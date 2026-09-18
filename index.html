@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Tendências de Salão 2026 — Aula ao vivo e gratuita com Denize | Nativa</title>
+  <meta name="description" content="Aula ao vivo e gratuita com Denize, fundadora da Nativa. Como vender mais na Black Friday e atrair a cliente que paga mais. Dia 21/09." />
+
+  <!-- Open Graph (compartilhamento em redes) -->
+  <meta property="og:title" content="Tendências de Salão 2026 — Aula ao vivo e gratuita" />
+  <meta property="og:description" content="Como vender mais na Black Friday e atrair a cliente que paga mais. Com Denize, fundadora da Nativa. Dia 21/09." />
+  <meta property="og:type" content="website" />
+
+  <!-- Montserrat (Google Fonts). Se houver fonte da marca em /assets, troque aqui. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================
+       PALETA (calibrada pela arte de referência)
+       ========================================================= */
+    :root {
+      --bg:        #ECE6DB; /* fundo bege/creme quente */
+      --ink:       #3B2A20; /* marrom café escuro (texto + botão) */
+      --ink-soft:  #5A4636; /* marrom médio para subhead */
+      --taupe:     #9C8A73; /* eyebrow / apoio */
+      --green:     #3E6B3A; /* verde de acento */
+      --cream:     #F3EEE4; /* texto do botão / superfícies claras */
+      --line:      #D8CFC0; /* divisórias sutis */
+
+      --radius-pill: 999px;
+      --radius-card: 20px;
+      --shadow-cta: 0 10px 24px rgba(59, 42, 32, .22);
+      --shadow-modal: 0 30px 80px rgba(59, 42, 32, .35);
+
+      --maxw: 1240px;
+      /* Altura real da viewport (corrige a barra do navegador no mobile) */
+      --vh: 100vh;
+    }
+
+    /* =========================================================
+       RESET / BASE
+       ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      /* Trava a rolagem da PÁGINA (o modal rola por dentro se precisar) */
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    img { display: block; max-width: 100%; }
+    button { font-family: inherit; cursor: pointer; }
+    :focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 6px; }
+
+    /* =========================================================
+       MARCA D'ÁGUA DE FOLHA (SVG sutil no fundo)
+       Aproximação, já que não veio arte de nervura nos assets.
+       ========================================================= */
+    .watermark {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .06;               /* opacidade baixa */
+      background-repeat: no-repeat;
+      background-position: -6% 108%, 108% -8%;
+      background-size: 60vmin, 46vmin;
+    }
+
+    /* =========================================================
+       LAYOUT PRINCIPAL — hero em 100vh, split 55/45
+       ========================================================= */
+    .hero {
+      position: relative;
+      z-index: 1;
+      height: var(--vh);
+      max-height: var(--vh);
+      display: grid;
+      grid-template-columns: 55% 45%;
+      overflow: hidden;
+    }
+
+    /* Coluna de texto (esquerda) */
+    .content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(28px, 5vw, 80px);
+      padding-bottom: 0;
+      min-height: 0;
+    }
+    .content-inner {
+      max-width: 640px;
+      margin: auto 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--taupe);
+      text-transform: uppercase;
+      letter-spacing: .28em;
+      font-weight: 600;
+      font-size: clamp(11px, 1.1vw, 14px);
+      margin: 0 0 clamp(14px, 2vw, 22px);
+    }
+    .eyebrow .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--green);
+      /* pulsa suavemente para reforçar o "ao vivo" */
+      animation: livePulse 2.2s ease-in-out infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(62,107,58,.5); }
+      50%      { box-shadow: 0 0 0 7px rgba(62,107,58,0); }
+    }
+
+    .headline {
+      margin: 0;
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: .98;
+      letter-spacing: -0.01em;
+      font-size: clamp(38px, 6vw, 78px);
+      color: var(--ink);
+    }
+
+    .subhead {
+      margin: clamp(16px, 2.4vw, 26px) 0 0;
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--ink-soft);
+      font-size: clamp(16px, 1.7vw, 22px);
+      max-width: 30ch;
+    }
+    .subhead strong { font-weight: 600; color: var(--ink); }
+
+    .support {
+      margin: clamp(18px, 2.4vw, 28px) 0 clamp(24px, 3vw, 34px);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink-soft);
+      font-weight: 500;
+      font-size: clamp(14px, 1.3vw, 17px);
+    }
+    .support .date {
+      color: var(--green);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .support .sep { width: 22px; height: 1px; background: var(--line); }
+
+    /* Botão CTA — pílula marrom */
+    .cta {
+      appearance: none;
+      border: none;
+      background: var(--ink);
+      color: var(--cream);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-weight: 700;
+      font-size: clamp(14px, 1.3vw, 16px);
+      padding: clamp(16px, 1.8vw, 20px) clamp(28px, 3vw, 40px);
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-cta);
+      align-self: flex-start;
+      transition: transform .16s ease, background .16s ease, box-shadow .16s ease;
+    }
+    .cta:hover  { background: #2C1F17; transform: translateY(-2px); box-shadow: 0 14px 30px rgba(59,42,32,.30); }
+    .cta:active { transform: translateY(0); box-shadow: var(--shadow-cta); }
+
+    /* Rodapé com logo, ancorado à esquerda */
+    .brand {
+      position: absolute;
+      left: clamp(28px, 5vw, 80px);
+      bottom: clamp(22px, 3.5vh, 40px);
+      z-index: 3;
+    }
+    .brand img { height: clamp(40px, 5.5vh, 60px); width: auto; }
+
+    /* Coluna da foto (direita), sangrando na borda */
+    .photo {
+      position: relative;
+      overflow: hidden;
+    }
+    .photo img {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+    }
+    /* Transição suave entre o fundo e a foto (evita corte seco) */
+    .photo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(90deg, var(--bg) 0%, rgba(236,230,219,0) 14%);
+      pointer-events: none;
+    }
+
+    /* =========================================================
+       MODAL
+       ========================================================= */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(38, 27, 20, .55);
+      backdrop-filter: blur(3px);
+    }
+    .overlay.open { display: flex; animation: fade .2s ease; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+    .modal {
+      position: relative;
+      width: min(560px, 100%);
+      max-height: min(88vh, 760px);
+      background: var(--cream);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-modal);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: pop .22s ease;
+    }
+    @keyframes pop { from { transform: translateY(12px) scale(.98); opacity: 0; } to { transform: none; opacity: 1; } }
+
+    .modal-head {
+      padding: 26px 28px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .modal-head .step-label {
+      color: var(--taupe);
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .modal-head h2 {
+      margin: 8px 0 0;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    /* Barra de progresso das etapas */
+    .progress { display: flex; gap: 6px; margin-top: 16px; }
+    .progress span {
+      height: 4px; flex: 1; border-radius: 999px; background: var(--line);
+      transition: background .2s ease;
+    }
+    .progress span.active { background: var(--green); }
+
+    .btn-close {
+      position: absolute;
+      top: 14px; right: 14px;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(59,42,32,.06);
+      color: var(--ink);
+      font-size: 20px;
+      line-height: 1;
+      display: grid; place-items: center;
+      transition: background .15s ease;
+    }
+    .btn-close:hover { background: rgba(59,42,32,.14); }
+
+    .modal-body {
+      padding: 22px 28px;
+      overflow-y: auto;           /* rolagem interna do modal */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .field { margin-bottom: 18px; }
+    .field > label.q {
+      display: block;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+    .field .hint { font-weight: 400; color: var(--taupe); font-size: 13px; }
+
+    input[type="text"], input[type="tel"] {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 16px;              /* 16px evita zoom no iOS */
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(62,107,58,.15);
+      outline: none;
+    }
+    input.invalid { border-color: #B4462F; box-shadow: 0 0 0 3px rgba(180,70,47,.12); }
+
+    /* Opções (radio / checkbox) como "pílulas" clicáveis */
+    .options { display: grid; gap: 10px; }
+    .opt {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      cursor: pointer;
+      transition: border-color .15s ease, background .15s ease;
+      font-size: 15px;
+      color: var(--ink);
+    }
+    .opt:hover { border-color: var(--taupe); }
+    .opt input { accent-color: var(--green); width: 18px; height: 18px; flex: none; }
+    .opt:has(input:checked) { border-color: var(--green); background: rgba(62,107,58,.07); }
+
+    .other-wrap { margin-top: 8px; display: none; }
+    .other-wrap.show { display: block; }
+
+    .error-msg {
+      color: #B4462F;
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 6px;
+      display: none;
+    }
+    .error-msg.show { display: block; }
+
+    .modal-foot {
+      padding: 16px 28px 24px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--cream);
+    }
+    .btn {
+      appearance: none; border: none;
+      padding: 14px 24px;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      letter-spacing: .04em;
+      font-size: 15px;
+      transition: transform .15s ease, background .15s ease, opacity .15s ease;
+    }
+    .btn-primary { background: var(--ink); color: var(--cream); }
+    .btn-primary:hover { background: #2C1F17; transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--ink-soft); }
+    .btn-ghost:hover { color: var(--ink); }
+    .btn[disabled] { opacity: .6; cursor: not-allowed; transform: none; }
+
+    .step { display: none; }
+    .step.active { display: block; }
+
+    /* Estado de carregamento no botão final */
+    .btn-primary.loading { position: relative; color: transparent; }
+    .btn-primary.loading::after {
+      content: "";
+      position: absolute; inset: 0; margin: auto;
+      width: 18px; height: 18px;
+      border: 2px solid rgba(243,238,228,.4);
+      border-top-color: var(--cream);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* =========================================================
+       RESPONSIVO — MOBILE (foto vira fundo full-bleed)
+       ========================================================= */
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+
+      /* A foto ocupa o fundo inteiro */
+      .photo {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .photo img { object-position: 72% bottom; }
+      /* Overlay quente para dar legibilidade ao texto */
+      .photo::before {
+        background:
+          linear-gradient(180deg, rgba(236,230,219,.92) 0%, rgba(236,230,219,.55) 38%, rgba(236,230,219,.10) 66%),
+          linear-gradient(0deg, rgba(59,42,32,.35) 0%, rgba(59,42,32,0) 40%);
+        inset: 0;
+      }
+
+      .content {
+        position: relative;
+        z-index: 2;
+        justify-content: flex-start;
+        padding-top: clamp(40px, 9vh, 80px);
+      }
+      .content-inner { margin: 0; }
+      .subhead, .support { text-shadow: 0 1px 2px rgba(236,230,219,.6); }
+      .cta { align-self: stretch; text-align: center; }
+
+      /* Logo centralizada no rodapé, sobre a foto */
+      .brand {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: clamp(20px, 4vh, 34px);
+      }
+      .brand img { filter: drop-shadow(0 1px 3px rgba(236,230,219,.7)); }
+    }
+
+    @media (max-width: 420px) {
+      .modal-body { padding: 18px 20px; }
+      .modal-head, .modal-foot { padding-left: 20px; padding-right: 20px; }
+    }
+
+    /* Respeita quem prefere menos movimento nas MICRO-interações,
+       sem zerar a experiência (mantém transições essenciais). */
+    @media (prefers-reduced-motion: reduce) {
+      .eyebrow .dot { animation: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Marca d'água de folha (SVG inline via background-image em data URI) -->
+  <div class="watermark" aria-hidden="true"></div>
+
+  <!-- ================= HERO ================= -->
+  <main class="hero">
+    <!-- Coluna de texto -->
+    <section class="content">
+      <div class="content-inner">
+        <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Ao vivo e gratuita</p>
+
+        <h1 class="headline">Tendências<br />de Salão 2026</h1>
+
+        <p class="subhead">
+          Como vender mais na <strong>Black Friday</strong> e atrair a cliente que paga mais.
+        </p>
+
+        <p class="support">
+          Aula ao vivo e gratuita com Denize, fundadora da Nativa.
+          <span class="sep" aria-hidden="true"></span>
+          <span class="date">Dia 21/09</span>
+        </p>
+
+        <button class="cta" id="openBtn" aria-haspopup="dialog" aria-controls="modal">
+          Quero garantir minha vaga
+        </button>
+      </div>
+
+      <!-- Logo no rodapé esquerdo -->
+      <div class="brand">
+        <!-- ASSET: logo "ntv | linha profissional" (arquivo: assets/logo.png) -->
+        <img src="assets/logo.png" alt="Nativa — Linha Profissional" />
+      </div>
+    </section>
+
+    <!-- Coluna da foto (sangrando na borda) -->
+    <aside class="photo" aria-hidden="true">
+      <!-- ASSET: foto da Denize (arquivo original "foto denize.png" -> assets/denize.png) -->
+      <img src="assets/denize.png" alt="" />
+    </aside>
+  </main>
+
+  <!-- ================= MODAL ================= -->
+  <div class="overlay" id="overlay">
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="btn-close" id="closeBtn" aria-label="Fechar">&times;</button>
+
+      <div class="modal-head">
+        <span class="step-label" id="stepLabel">Etapa 1 de 2</span>
+        <h2 id="modalTitle">Garanta sua vaga</h2>
+        <div class="progress" aria-hidden="true">
+          <span class="active" id="p1"></span>
+          <span id="p2"></span>
+        </div>
+      </div>
+
+      <form id="leadForm" novalidate>
+        <div class="modal-body">
+          <!-- ---------- ETAPA 1: identificação ---------- -->
+          <div class="step active" data-step="1">
+            <div class="field">
+              <label class="q" for="nome">Nome completo</label>
+              <input type="text" id="nome" name="nome" autocomplete="name"
+                     placeholder="Seu nome completo" required />
+              <div class="error-msg" data-error="nome">Por favor, informe seu nome completo.</div>
+            </div>
+
+            <div class="field">
+              <label class="q" for="whatsapp">WhatsApp</label>
+              <input type="tel" id="whatsapp" name="whatsapp" inputmode="numeric"
+                     autocomplete="tel" placeholder="(00) 00000-0000" required />
+              <div class="error-msg" data-error="whatsapp">Informe um WhatsApp válido com DDD.</div>
+            </div>
+          </div>
+
+          <!-- ---------- ETAPA 2: qualificação ---------- -->
+          <div class="step" data-step="2">
+            <!-- Q1 -->
+            <div class="field" data-question="marcas">
+              <label class="q">Quais marcas você mais usa no seu salão? <span class="hint">(pode marcar várias)</span></label>
+              <div class="options">
+                <label class="opt"><input type="checkbox" name="marcas" value="Grandha" /> Grandha</label>
+                <label class="opt"><input type="checkbox" name="marcas" value="Toctus" /> Toctus</label>
+                <label class="opt"><input type="checkbox" name="marcas" value="Wella" /> Wella</label>
+                <label class="opt"><input type="checkbox" name="marcas" value="L'Oréal" /> L'Oréal</label>
+                <label class="opt"><input type="checkbox" name="marcas" value="Keune" /> Keune</label>
+                <label class="opt"><input type="checkbox" name="marcas" value="Outros" data-other="marcas-outro" /> Outros</label>
+              </div>
+              <div class="other-wrap" id="marcas-outro">
+                <input type="text" name="marcas_outro" placeholder="Quais outras marcas?" />
+              </div>
+              <div class="error-msg" data-error="marcas">Selecione ao menos uma marca.</div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="field" data-question="faturamento">
+              <label class="q">Em média, qual o seu faturamento mensal?</label>
+              <div class="options">
+                <label class="opt"><input type="radio" name="faturamento" value="Até R$5 mil" /> Até R$5 mil</label>
+                <label class="opt"><input type="radio" name="faturamento" value="De R$5 mil a R$15 mil" /> De R$5 mil a R$15 mil</label>
+                <label class="opt"><input type="radio" name="faturamento" value="De R$15 mil a R$30 mil" /> De R$15 mil a R$30 mil</label>
+                <label class="opt"><input type="radio" name="faturamento" value="Acima de R$30 mil" /> Acima de R$30 mil</label>
+              </div>
+              <div class="error-msg" data-error="faturamento">Selecione uma opção.</div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="field" data-question="atendimentos">
+              <label class="q">Qual a sua média de atendimentos por semana?</label>
+              <div class="options">
+                <label class="opt"><input type="radio" name="atendimentos" value="Até 10" /> Até 10</label>
+                <label class="opt"><input type="radio" name="atendimentos" value="De 11 a 25" /> De 11 a 25</label>
+                <label class="opt"><input type="radio" name="atendimentos" value="De 26 a 50" /> De 26 a 50</label>
+                <label class="opt"><input type="radio" name="atendimentos" value="Mais de 50" /> Mais de 50</label>
+              </div>
+              <div class="error-msg" data-error="atendimentos">Selecione uma opção.</div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="field" data-question="procedimentos">
+              <label class="q">Quais procedimentos você atende no seu espaço? <span class="hint">(pode marcar vários)</span></label>
+              <div class="options">
+                <label class="opt"><input type="checkbox" name="procedimentos" value="Tratamentos" /> Tratamentos</label>
+                <label class="opt"><input type="checkbox" name="procedimentos" value="Coloração" /> Coloração</label>
+                <label class="opt"><input type="checkbox" name="procedimentos" value="Mechas" /> Mechas</label>
+                <label class="opt"><input type="checkbox" name="procedimentos" value="Alisamento, Relaxamento ou Soltura de Cachos" /> Alisamento, Relaxamento ou Soltura de Cachos</label>
+                <label class="opt"><input type="checkbox" name="procedimentos" value="Outros" data-other="proc-outro" /> Outros</label>
+              </div>
+              <div class="other-wrap" id="proc-outro">
+                <input type="text" name="procedimentos_outro" placeholder="Quais outros procedimentos?" />
+              </div>
+              <div class="error-msg" data-error="procedimentos">Selecione ao menos um procedimento.</div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="field" data-question="dificuldade">
+              <label class="q">Qual a sua maior dificuldade hoje?</label>
+              <div class="options">
+                <label class="opt"><input type="radio" name="dificuldade" value="Produtos" /> Produtos</label>
+                <label class="opt"><input type="radio" name="dificuldade" value="Clientes" /> Clientes</label>
+                <label class="opt"><input type="radio" name="dificuldade" value="Divulgação" /> Divulgação</label>
+              </div>
+              <div class="error-msg" data-error="dificuldade">Selecione uma opção.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-foot">
+          <button type="button" class="btn btn-ghost" id="backBtn" style="visibility:hidden">Voltar</button>
+          <button type="button" class="btn btn-primary" id="nextBtn">Continuar</button>
+          <button type="submit" class="btn btn-primary" id="submitBtn" style="display:none">Garantir minha vaga</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================
+       CONFIG — ajuste aqui os destinos (não invente endpoints)
+       ========================================================= */
+    const CONFIG = {
+      WHATSAPP_GROUP_URL: "https://chat.whatsapp.com/BCso905Ac1DFLx3brgRN8L",
+      // Vazio = eu ligo RD Station / GoHighLevel / Zapier depois.
+      WEBHOOK_URL: "https://n8n.protocolopentagono.com.br/webhook/b1f3718f-b74c-4b86-967a-92e5bba5caff",
+      META_PIXEL_ID: "",          // preencha para disparar o evento Lead do Meta
+      WEBHOOK_TIMEOUT_MS: 3500,   // timeout curto: nunca travar o redirect
+    };
+
+    /* =========================================================
+       CORREÇÃO DE ALTURA (100vh real no mobile)
+       ========================================================= */
+    function setVH() {
+      document.documentElement.style.setProperty("--vh", window.innerHeight + "px");
+    }
+    setVH();
+    window.addEventListener("resize", setVH);
+    window.addEventListener("orientationchange", setVH);
+
+    /* =========================================================
+       MARCA D'ÁGUA — SVG de folha/nervura (data URI)
+       ========================================================= */
+    (function paintWatermark() {
+      const leaf = encodeURIComponent(
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+          <g fill="none" stroke="#3B2A20" stroke-width="2" stroke-linecap="round">
+            <path d="M100 8 C55 45 40 120 100 192 C160 120 145 45 100 8 Z"/>
+            <path d="M100 8 L100 192"/>
+            <path d="M100 40 L60 70 M100 40 L140 70 M100 75 L52 108 M100 75 L148 108 M100 112 L60 142 M100 112 L140 142 M100 150 L74 170 M100 150 L126 170"/>
+          </g>
+        </svg>`
+      );
+      const url = `url("data:image/svg+xml,${leaf}")`;
+      document.querySelector(".watermark").style.backgroundImage = `${url}, ${url}`;
+    })();
+
+    /* =========================================================
+       MÁSCARA DE WHATSAPP — (00) 00000-0000
+       ========================================================= */
+    const waInput = document.getElementById("whatsapp");
+    waInput.addEventListener("input", (e) => {
+      let d = e.target.value.replace(/\D/g, "").slice(0, 11); // só dígitos, máx 11
+      let out = "";
+      if (d.length > 0) out = "(" + d.slice(0, 2);
+      if (d.length >= 2) out += ") ";
+      if (d.length > 2) out += d.slice(2, 7);
+      if (d.length > 7) out += "-" + d.slice(7, 11);
+      e.target.value = out;
+    });
+    // WhatsApp válido = 10 (fixo) ou 11 (celular) dígitos
+    function isWhatsAppValid(v) {
+      const d = v.replace(/\D/g, "");
+      return d.length === 10 || d.length === 11;
+    }
+
+    /* =========================================================
+       CAMPO "OUTROS" — mostra input de texto quando marcado
+       ========================================================= */
+    document.querySelectorAll('input[data-other]').forEach((cb) => {
+      cb.addEventListener("change", () => {
+        const wrap = document.getElementById(cb.dataset.other);
+        wrap.classList.toggle("show", cb.checked);
+        if (!cb.checked) wrap.querySelector("input").value = "";
+      });
+    });
+
+    /* =========================================================
+       CONTROLE DO MODAL (abrir, fechar, foco, teclado)
+       ========================================================= */
+    const overlay   = document.getElementById("overlay");
+    const modal     = document.getElementById("modal");
+    const openBtn   = document.getElementById("openBtn");
+    const closeBtn  = document.getElementById("closeBtn");
+    const nextBtn   = document.getElementById("nextBtn");
+    const backBtn   = document.getElementById("backBtn");
+    const submitBtn = document.getElementById("submitBtn");
+    const stepLabel = document.getElementById("stepLabel");
+    const p1 = document.getElementById("p1");
+    const p2 = document.getElementById("p2");
+    let currentStep = 1;
+    let lastFocused = null;
+
+    function openModal() {
+      lastFocused = document.activeElement;
+      overlay.classList.add("open");
+      goToStep(1);
+      document.getElementById("nome").focus();
+    }
+    function closeModal() {
+      overlay.classList.remove("open");
+      if (lastFocused) lastFocused.focus();
+    }
+
+    openBtn.addEventListener("click", openModal);
+    closeBtn.addEventListener("click", closeModal);
+
+    // Clique fora fecha
+    overlay.addEventListener("mousedown", (e) => {
+      if (e.target === overlay) closeModal();
+    });
+    // ESC fecha
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && overlay.classList.contains("open")) closeModal();
+    });
+
+    // Focus trap simples dentro do modal
+    modal.addEventListener("keydown", (e) => {
+      if (e.key !== "Tab") return;
+      const focusables = modal.querySelectorAll(
+        'button, input, [tabindex]:not([tabindex="-1"])'
+      );
+      const visible = Array.from(focusables).filter((el) => el.offsetParent !== null && !el.disabled);
+      if (!visible.length) return;
+      const first = visible[0], last = visible[visible.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    /* =========================================================
+       NAVEGAÇÃO ENTRE ETAPAS
+       ========================================================= */
+    function goToStep(step) {
+      currentStep = step;
+      document.querySelectorAll(".step").forEach((s) => {
+        s.classList.toggle("active", Number(s.dataset.step) === step);
+      });
+      stepLabel.textContent = `Etapa ${step} de 2`;
+      p1.classList.toggle("active", step >= 1);
+      p2.classList.toggle("active", step >= 2);
+
+      backBtn.style.visibility = step === 1 ? "hidden" : "visible";
+      nextBtn.style.display   = step === 1 ? "inline-flex" : "none";
+      submitBtn.style.display = step === 2 ? "inline-flex" : "none";
+
+      modal.querySelector(".modal-body").scrollTop = 0;
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (validateStep1()) goToStep(2);
+    });
+    backBtn.addEventListener("click", () => goToStep(1));
+
+    /* =========================================================
+       VALIDAÇÃO
+       ========================================================= */
+    function showError(name, show) {
+      const el = document.querySelector(`[data-error="${name}"]`);
+      if (el) el.classList.toggle("show", show);
+    }
+
+    function validateStep1() {
+      let ok = true;
+      const nome = document.getElementById("nome");
+      const wa   = document.getElementById("whatsapp");
+
+      const nomeOk = nome.value.trim().length >= 3;
+      nome.classList.toggle("invalid", !nomeOk);
+      showError("nome", !nomeOk);
+      if (!nomeOk) ok = false;
+
+      const waOk = isWhatsAppValid(wa.value);
+      wa.classList.toggle("invalid", !waOk);
+      showError("whatsapp", !waOk);
+      if (!waOk) ok = false;
+
+      return ok;
+    }
+
+    function validateStep2() {
+      let ok = true;
+
+      // Múltipla escolha: ao menos 1 marcado; se "Outros", exigir texto
+      ["marcas", "procedimentos"].forEach((name) => {
+        const checked = document.querySelectorAll(`input[name="${name}"]:checked`);
+        let valid = checked.length > 0;
+
+        const otherCb = document.querySelector(`input[name="${name}"][data-other]`);
+        if (otherCb && otherCb.checked) {
+          const otherInput = document.getElementById(otherCb.dataset.other).querySelector("input");
+          if (otherInput.value.trim().length === 0) {
+            valid = false;
+            otherInput.classList.add("invalid");
+          } else {
+            otherInput.classList.remove("invalid");
+          }
+        }
+        showError(name, !valid);
+        if (!valid) ok = false;
+      });
+
+      // Escolha única: exatamente 1
+      ["faturamento", "atendimentos", "dificuldade"].forEach((name) => {
+        const valid = document.querySelectorAll(`input[name="${name}"]:checked`).length === 1;
+        showError(name, !valid);
+        if (!valid) ok = false;
+      });
+
+      return ok;
+    }
+
+    // Limpa o erro assim que a pessoa interage
+    modal.addEventListener("change", (e) => {
+      const field = e.target.closest("[data-question]");
+      if (field) showError(field.dataset.question, false);
+    });
+
+    /* =========================================================
+       COLETA DE DADOS (respostas + UTM + timestamp)
+       ========================================================= */
+    function getUTMs() {
+      const p = new URLSearchParams(window.location.search);
+      return {
+        utm_source:   p.get("utm_source")   || "",
+        utm_medium:   p.get("utm_medium")   || "",
+        utm_campaign: p.get("utm_campaign") || "",
+        utm_content:  p.get("utm_content")  || "",
+        utm_term:     p.get("utm_term")     || "",
+      };
+    }
+
+    function collectData() {
+      const val = (name) =>
+        Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map((i) => i.value);
+
+      return {
+        nome: document.getElementById("nome").value.trim(),
+        whatsapp: document.getElementById("whatsapp").value.trim(),
+        marcas: val("marcas"),
+        marcas_outro: document.querySelector('input[name="marcas_outro"]').value.trim(),
+        faturamento: (val("faturamento")[0] || ""),
+        atendimentos: (val("atendimentos")[0] || ""),
+        procedimentos: val("procedimentos"),
+        procedimentos_outro: document.querySelector('input[name="procedimentos_outro"]').value.trim(),
+        dificuldade: (val("dificuldade")[0] || ""),
+        origem: "Landing Aula Tendências 2026",
+        pagina: window.location.href,
+        timestamp: new Date().toISOString(),
+        ...getUTMs(),
+      };
+    }
+
+    /* =========================================================
+       ENVIO + REDIRECT (nunca travar o redirecionamento)
+       ========================================================= */
+    const form = document.getElementById("leadForm");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!validateStep2()) return;
+
+      const data = collectData();
+
+      // Backup local sempre (mesmo que o POST falhe)
+      try {
+        localStorage.setItem("nativa_lead", JSON.stringify(data));
+      } catch (_) { /* localStorage indisponível: segue o fluxo */ }
+
+      submitBtn.classList.add("loading");
+      submitBtn.disabled = true;
+
+      // Dispara evento Lead do Meta Pixel, se configurado
+      if (CONFIG.META_PIXEL_ID && typeof window.fbq === "function") {
+        try { window.fbq("track", "Lead"); } catch (_) {}
+      }
+
+      // POST no webhook com timeout curto (opcional)
+      if (CONFIG.WEBHOOK_URL) {
+        try {
+          const controller = new AbortController();
+          const t = setTimeout(() => controller.abort(), CONFIG.WEBHOOK_TIMEOUT_MS);
+          await fetch(CONFIG.WEBHOOK_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+            signal: controller.signal,
+            keepalive: true, // ajuda a concluir o envio mesmo saindo da página
+          });
+          clearTimeout(t);
+        } catch (_) {
+          // Silencioso de propósito: o redirect acontece de qualquer forma.
+        }
+      }
+
+      // ====== AQUI EU LIGO O RD STATION / GOHIGHLEVEL / ZAPIER ======
+      // Ex.: outra chamada fetch para o endpoint do RD, usando o objeto `data`.
+      // Mantenha também com timeout curto para não segurar o redirect.
+      // ==============================================================
+
+      // Redireciona SEMPRE para o grupo do WhatsApp
+      window.location.href = CONFIG.WHATSAPP_GROUP_URL;
+    });
+  </script>
+</body>
+</html>
